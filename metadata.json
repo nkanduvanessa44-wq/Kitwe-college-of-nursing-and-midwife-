@@ -1,0 +1,6 @@
+{
+  "name": "Kitwe School of Nursing and Midwifery",
+  "description": "Official portal for Kitwe School of Nursing and Midwifery, featuring online admissions, document uploads, automated application tracking, fee payment integration, student results viewing, and faculty admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
