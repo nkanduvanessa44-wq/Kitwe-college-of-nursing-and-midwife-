@@ -26,25 +26,25 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sky-100 shadow-xs">
-      {/* Top Institutional Bar */}
-      <div className="bg-sky-950 text-sky-100 text-xs py-1.5 px-4 sm:px-6">
+    <header className="sticky top-0 z-50 bg-white border-b border-sky-100 shadow-xs">
+      {/* Top Institutional Bar in clean light blue and white */}
+      <div className="bg-sky-50/80 border-b border-sky-100 text-xs py-1.5 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-4 text-sky-200/90">
+          <div className="flex items-center gap-4 text-slate-600">
             <span className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-sky-400" />
+              <MapPin className="w-3.5 h-3.5 text-sky-600" />
               Kitwe Teaching Hospital Grounds, Kuomboka Rd, Kitwe, Zambia
             </span>
-            <span className="hidden md:inline-block text-sky-700">|</span>
+            <span className="hidden md:inline-block text-sky-300">|</span>
             <span className="hidden md:flex items-center gap-1.5">
-              <Phone className="w-3.5 h-3.5 text-sky-400" />
+              <Phone className="w-3.5 h-3.5 text-sky-600" />
               Admissions: +260 (212) 226-315 / +260 97 784 2190
             </span>
           </div>
           
-          <div className="flex items-center gap-4 ml-auto text-sky-200 font-medium">
-            <span className="hidden sm:inline">NMCZ & HPCZ Accredited</span>
-            <span className="text-sky-300 bg-sky-900/90 border border-sky-800 px-2 py-0.5 rounded text-[11px]">
+          <div className="flex items-center gap-4 ml-auto text-slate-600 font-medium">
+            <span className="hidden sm:inline">NMCZ &amp; HPCZ Accredited</span>
+            <span className="text-sky-800 bg-white border border-sky-200 px-2 py-0.5 rounded text-[11px] font-semibold shadow-2xs">
               2026/2027 Admissions Open
             </span>
           </div>

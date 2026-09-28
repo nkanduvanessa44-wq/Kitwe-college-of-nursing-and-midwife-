@@ -275,7 +275,7 @@ export const HomeQuickSearch: React.FC = () => {
   };
 
   return (
-    <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 -mt-4 mb-4">
+    <section className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 mt-6 mb-8">
       <div className="bg-white rounded-3xl p-5 sm:p-7 shadow-xl border border-sky-100 ring-1 ring-sky-200/50 space-y-4">
         
         {/* Search Bar Header */}
