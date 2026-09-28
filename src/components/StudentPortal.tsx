@@ -21,6 +21,7 @@ import {
   Download
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import campusBannerImg from '../assets/images/campus_banner_1790582534269.jpg';
 
 export const StudentPortal: React.FC = () => {
   const { 
@@ -82,14 +83,23 @@ export const StudentPortal: React.FC = () => {
     }, 1200);
   };
 
-  // If not logged in, show Sign In View
+  // If not logged in, show Sign In View with visible campus background
   if (!currentStudent) {
     return (
-      <div className="max-w-md mx-auto px-4 py-12">
-        <div className="bg-white rounded-3xl border border-sky-100 p-8 shadow-xl space-y-6">
+      <div className="relative min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-12 overflow-hidden">
+        {/* Visible Campus Photo in Background */}
+        <img
+          src={campusBannerImg}
+          alt="Kitwe School of Nursing and Midwifery Administration Block"
+          referrerPolicy="no-referrer"
+          className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.94] contrast-[1.02]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-950/40 via-slate-900/30 to-sky-950/50 backdrop-blur-[1px]" />
+
+        <div className="relative z-10 w-full max-w-md bg-white/95 backdrop-blur-md rounded-3xl border border-sky-200/80 p-8 shadow-2xl space-y-6">
           
           <div className="text-center space-y-2">
-            <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 mx-auto flex items-center justify-center border border-sky-100">
+            <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-700 mx-auto flex items-center justify-center border border-sky-100 shadow-sm">
               <GraduationCap className="w-8 h-8" />
             </div>
             <span className="text-xs font-bold text-sky-800 uppercase tracking-wider bg-sky-100/70 px-2.5 py-0.5 rounded-full border border-sky-200">
@@ -98,7 +108,7 @@ export const StudentPortal: React.FC = () => {
             <h1 className="font-serif-crest text-2xl font-bold text-slate-900">
               Student Portal Sign In
             </h1>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-600">
               Sign in with your Student ID number (e.g. <code className="text-sky-700 font-mono">SN/2024/0142</code>) or NRC to access examination marks, GPA, and transcripts.
             </p>
           </div>
@@ -201,36 +211,56 @@ export const StudentPortal: React.FC = () => {
   const latestSem = currentStudent.semesterResults[currentStudent.semesterResults.length - 1];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-6">
-      
-      {/* Student Banner Card in light blue & navy */}
-      <div className="bg-gradient-to-r from-sky-950 via-sky-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-sky-800/40">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-sky-800 text-sky-200 font-serif-crest text-2xl font-black flex items-center justify-center border-2 border-sky-600/50 shadow-inner shrink-0">
-              {currentStudent.fullName.split(' ').map(n => n[0]).join('')}
-            </div>
+    <div className="relative min-h-screen pb-12">
+      {/* Visible Campus Picture in the background behind the student dashboard */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <img
+          src={campusBannerImg}
+          alt="Kitwe School of Nursing and Midwifery Campus"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center filter brightness-[1.0] contrast-[1.02] opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-50/60 via-white/50 to-sky-50/60" />
+      </div>
 
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="font-serif-crest text-xl sm:text-2xl font-bold">
-                  {currentStudent.fullName}
-                </h1>
-                <span className="px-2 py-0.5 rounded bg-sky-500/20 text-sky-200 text-[11px] font-semibold border border-sky-400/40">
-                  Enrolled Active
-                </span>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+        
+        {/* Student Banner Card with Visible Campus Photo */}
+        <div className="relative overflow-hidden text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-sky-400/50">
+          <img
+            src={campusBannerImg}
+            alt="Kitwe School Campus"
+            referrerPolicy="no-referrer"
+            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-sky-950/45 to-transparent" />
+
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-sky-700 text-sky-100 font-serif-crest text-2xl font-black flex items-center justify-center border-2 border-sky-400/50 shadow-lg shrink-0">
+                {currentStudent.fullName.split(' ').map(n => n[0]).join('')}
               </div>
-              <p className="text-xs sm:text-sm text-sky-200">
-                {currentStudent.program} · Year {currentStudent.currentYear}, Semester {currentStudent.currentSemester}
-              </p>
-              <div className="flex flex-wrap items-center gap-3 text-xs text-sky-100 pt-1 font-mono">
-                <span>Student ID: <strong className="text-white">{currentStudent.id}</strong></span>
-                <span>·</span>
-                <span>NRC: <strong className="text-white">{currentStudent.nrc}</strong></span>
+
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h1 className="font-serif-crest text-xl sm:text-2xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    {currentStudent.fullName}
+                  </h1>
+                  <span className="text-xs text-sky-200 font-semibold drop-shadow-sm">
+                    · Enrolled Active
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-sky-100 font-medium drop-shadow-sm">
+                  {currentStudent.program} · Year {currentStudent.currentYear}, Semester {currentStudent.currentSemester}
+                </p>
+                <div className="flex flex-wrap items-center gap-3 text-xs text-sky-100 pt-1 font-mono drop-shadow-sm">
+                  <span>Student ID: <strong className="text-white">{currentStudent.id}</strong></span>
+                  <span>·</span>
+                  <span>NRC: <strong className="text-white">{currentStudent.nrc}</strong></span>
+                </div>
               </div>
             </div>
-          </div>
 
           {/* Quick Metrics & Logout */}
           <div className="flex flex-wrap md:flex-col items-end gap-3 shrink-0">
@@ -631,6 +661,7 @@ export const StudentPortal: React.FC = () => {
         </div>
       )}
 
+      </div>
     </div>
   );
 };

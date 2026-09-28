@@ -32,58 +32,36 @@ export const HomeView: React.FC = () => {
       
       {/* HERO BANNER SECTION WITH THE CAMPUS PHOTO */}
       <section className="relative overflow-hidden bg-slate-900 text-white">
-        {/* Campus Photo Background Banner */}
-        <div className="relative min-h-[560px] lg:min-h-[640px] flex items-center">
+        {/* Full-Bleed Campus Photo Background Banner */}
+        <div className="relative min-h-[580px] lg:min-h-[660px] flex items-end">
           <img
             src={campusBannerImg}
             alt="Kitwe School of Nursing and Midwifery Administration Block Campus"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.45] contrast-[1.08]"
+            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[1.0] contrast-[1.02]"
           />
           
-          {/* Subtle gradient overlay in navy & light blue tint */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-sky-950/80 to-slate-900/60" />
+          {/* Subtle gentle gradient at the bottom so the photo is unobstructed while text is readable */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent" />
           
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24 z-10">
-            <div className="max-w-3xl space-y-6">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16 z-10 w-full">
+            <div className="max-w-3xl space-y-4">
               
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 border border-sky-400/40 text-sky-200 text-xs font-semibold tracking-wide backdrop-blur-xs">
-                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-                Ministry of Health · Copperbelt Province · Republic of Zambia
-              </div>
-
               {/* Title */}
-              <h1 className="font-serif-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              <h1 className="font-serif-crest text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
                 Kitwe School of Nursing &amp; Midwifery
               </h1>
 
               {/* Tagline */}
-              <p className="text-base sm:text-lg lg:text-xl text-sky-100 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg text-sky-100 font-medium leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] max-w-2xl">
                 Pioneering clinical excellence, compassionate obstetric care, and life-saving healthcare leadership since 1958. Directly affiliated with Kitwe Teaching Hospital.
               </p>
 
-              {/* Key Features Quick Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs text-sky-100">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
-                  <span>NMCZ Indexed &amp; Certified</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
-                  <span>Kitwe Teaching Hospital Wards</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
-                  <span>Instant Online Application &amp; Tracking</span>
-                </div>
-              </div>
-
               {/* Action Buttons */}
-              <div className="pt-4 flex flex-wrap items-center gap-3 sm:gap-4">
+              <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
                 <button
                   onClick={() => setActiveTab('apply')}
-                  className="px-6 py-3.5 bg-sky-500 hover:bg-sky-400 text-white font-semibold text-sm rounded-xl shadow-lg shadow-sky-600/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2.5"
+                  className="px-6 py-3.5 bg-sky-500 hover:bg-sky-400 text-white font-semibold text-sm rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2.5"
                 >
                   <FileCheck className="w-4 h-4" />
                   <span>Apply Online 2026/2027</span>
@@ -92,108 +70,26 @@ export const HomeView: React.FC = () => {
 
                 <button
                   onClick={() => setActiveTab('track')}
-                  className="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-medium text-sm rounded-xl backdrop-blur-md border border-white/20 transition-all flex items-center gap-2"
+                  className="px-5 py-3.5 bg-slate-900/80 hover:bg-slate-900 text-white font-medium text-sm rounded-xl backdrop-blur-md border border-white/40 transition-all flex items-center gap-2 shadow-xl"
                 >
                   <span>Track Application</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab('student-portal')}
-                  className="px-5 py-3.5 bg-sky-900/70 hover:bg-sky-800/90 text-sky-100 font-medium text-sm rounded-xl border border-sky-400/30 backdrop-blur-md transition-all flex items-center gap-2"
+                  className="px-5 py-3.5 bg-slate-900/80 hover:bg-slate-900 text-sky-100 font-medium text-sm rounded-xl border border-sky-400/40 backdrop-blur-md transition-all flex items-center gap-2 shadow-xl"
                 >
                   <GraduationCap className="w-4 h-4 text-sky-300" />
-                  <span>Student Results &amp; Portal</span>
+                  <span>Student Portal</span>
                 </button>
               </div>
 
-              {/* Photo Caption Note */}
-              <p className="text-[11px] text-sky-200/80 italic pt-2">
-                Photo: Kitwe School of Nursing and Midwifery Main Administration Block &amp; Covered Walkway, Kitwe.
+              {/* Caption */}
+              <p className="text-[11px] text-sky-100/90 italic pt-1 drop-shadow-sm">
+                Kitwe School of Nursing and Midwifery Main Administration Block &amp; Covered Walkway, Kitwe.
               </p>
 
             </div>
-          </div>
-        </div>
-
-        {/* Quick Portal Entry Cards Bar */}
-        <div className="relative z-20 -mt-10 max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            {/* Card 1 */}
-            <div 
-              onClick={() => setActiveTab('apply')}
-              className="bg-white rounded-2xl p-6 shadow-xl border border-sky-100 hover:border-sky-300 hover:shadow-2xl transition-all cursor-pointer group text-slate-900"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-colors">
-                  <FileCheck className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-semibold text-sky-700 bg-sky-100/70 px-2.5 py-0.5 rounded-full">
-                  Jan &amp; July Intakes
-                </span>
-              </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-sky-600 transition-colors">
-                Online Admissions Portal
-              </h3>
-              <p className="text-xs text-slate-600 mt-1 line-clamp-2">
-                Submit certified ECZ qualifications, upload documents, and complete online application fee payment in Kwacha.
-              </p>
-              <div className="mt-4 flex items-center text-xs font-semibold text-sky-600 group-hover:translate-x-1 transition-transform">
-                <span>Start Application</span>
-                <ChevronRight className="w-4 h-4 ml-0.5" />
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div 
-              onClick={() => setActiveTab('track')}
-              className="bg-white rounded-2xl p-6 shadow-xl border border-sky-100 hover:border-sky-300 hover:shadow-2xl transition-all cursor-pointer group text-slate-900"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-colors">
-                  <Clock className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-semibold text-sky-700 bg-sky-100/70 px-2.5 py-0.5 rounded-full">
-                  Real-time Status
-                </span>
-              </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-sky-600 transition-colors">
-                Application Status Tracker
-              </h3>
-              <p className="text-xs text-slate-600 mt-1 line-clamp-2">
-                Check verification progress, interview dates, and download your official provisional admission offer letter.
-              </p>
-              <div className="mt-4 flex items-center text-xs font-semibold text-sky-600 group-hover:translate-x-1 transition-transform">
-                <span>Track Reference Code</span>
-                <ChevronRight className="w-4 h-4 ml-0.5" />
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div 
-              onClick={() => setActiveTab('student-portal')}
-              className="bg-white rounded-2xl p-6 shadow-xl border border-sky-100 hover:border-sky-300 hover:shadow-2xl transition-all cursor-pointer group text-slate-900"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-12 h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors">
-                  <GraduationCap className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-semibold text-sky-700 bg-sky-100/70 px-2.5 py-0.5 rounded-full">
-                  Students &amp; Results
-                </span>
-              </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-sky-700 transition-colors">
-                Student Examination Portal
-              </h3>
-              <p className="text-xs text-slate-600 mt-1 line-clamp-2">
-                Sign in to view continuous assessment (CA) scores, semester GPA, official printable result transcripts, and clinical rotations.
-              </p>
-              <div className="mt-4 flex items-center text-xs font-semibold text-sky-700 group-hover:translate-x-1 transition-transform">
-                <span>Sign In to Student Portal</span>
-                <ChevronRight className="w-4 h-4 ml-0.5" />
-              </div>
-            </div>
-
           </div>
         </div>
       </section>

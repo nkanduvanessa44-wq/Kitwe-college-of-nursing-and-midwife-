@@ -28,6 +28,7 @@ import {
   Check, 
   X 
 } from 'lucide-react';
+import campusBannerImg from '../assets/images/campus_banner_1790582534269.jpg';
 
 export const AdminDashboard: React.FC = () => {
   const { 
@@ -72,13 +73,22 @@ export const AdminDashboard: React.FC = () => {
   const [noticeContent, setNoticeContent] = useState('');
   const [noticePublished, setNoticePublished] = useState(false);
 
-  // If faculty is not logged in, show Faculty Sign In view
+  // If faculty is not logged in, show Faculty Sign In view with visible campus background
   if (!adminUser) {
     return (
-      <div className="max-w-md mx-auto px-4 py-12">
-        <div className="bg-white rounded-3xl border border-sky-100 p-8 shadow-xl space-y-6">
+      <div className="relative min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-12 overflow-hidden">
+        {/* Visible Campus Photo in Background */}
+        <img
+          src={campusBannerImg}
+          alt="Kitwe School of Nursing and Midwifery Administration Block"
+          referrerPolicy="no-referrer"
+          className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.94] contrast-[1.02]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-950/40 via-slate-900/30 to-sky-950/50 backdrop-blur-[1px]" />
+
+        <div className="relative z-10 w-full max-w-md bg-white/95 backdrop-blur-md rounded-3xl border border-sky-200/80 p-8 shadow-2xl space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-800 mx-auto flex items-center justify-center border border-sky-100">
+            <div className="w-14 h-14 rounded-2xl bg-sky-50 text-sky-800 mx-auto flex items-center justify-center border border-sky-100 shadow-sm">
               <ShieldCheck className="w-8 h-8" />
             </div>
             <span className="text-xs font-bold text-sky-800 uppercase tracking-wider bg-sky-100/70 px-2.5 py-0.5 rounded-full border border-sky-200">
@@ -87,7 +97,7 @@ export const AdminDashboard: React.FC = () => {
             <h1 className="font-serif-crest text-2xl font-bold text-slate-900">
               Faculty Admin Portal
             </h1>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-600">
               Restricted management area for Admissions Board, Examinations Directorate, and Clinical Preceptors.
             </p>
           </div>
@@ -102,7 +112,7 @@ export const AdminDashboard: React.FC = () => {
                 key={fac.id}
                 type="button"
                 onClick={() => facultyLogin(fac.id)}
-                className="w-full p-3 rounded-xl border border-sky-100 hover:border-sky-300 hover:bg-sky-50/60 text-left transition-all text-xs flex items-center justify-between group"
+                className="w-full p-3 rounded-xl border border-sky-100 hover:border-sky-300 hover:bg-sky-50/80 text-left transition-all text-xs flex items-center justify-between group bg-white shadow-xs"
               >
                 <div>
                   <span className="font-bold text-slate-900 group-hover:text-sky-800 block">{fac.name}</span>
@@ -115,7 +125,7 @@ export const AdminDashboard: React.FC = () => {
             ))}
           </div>
 
-          <div className="p-3 bg-sky-50/40 border border-sky-100 rounded-xl text-[11px] text-slate-500 text-center">
+          <div className="p-3 bg-sky-50/60 border border-sky-100 rounded-xl text-[11px] text-slate-600 text-center">
             Role-Based Access Control: Verification audits are securely logged.
           </div>
         </div>
@@ -198,53 +208,73 @@ export const AdminDashboard: React.FC = () => {
   const totalRevenueZMW = applications.reduce((sum, app) => sum + (app.payment?.amountZMW || 0), 0);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
-      
-      {/* Admin Top Banner */}
-      <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 border border-sky-900">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-sky-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md">
-            <ShieldCheck className="w-8 h-8" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-sky-200 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">
-                Admin Console
-              </span>
-              <span className="text-xs text-sky-300 font-mono">Kitwe School Faculty Hub</span>
-            </div>
-            <h1 className="font-serif-crest text-xl sm:text-2xl font-bold mt-1 text-white">
-              {adminUser.name}
-            </h1>
-            <p className="text-xs text-slate-300">
-              {adminUser.designation} · {adminUser.email}
-            </p>
-          </div>
-        </div>
-
-        {/* Quick Stats & Sign Out */}
-        <div className="flex flex-wrap md:flex-col items-end gap-3 shrink-0">
-          <div className="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-xl border border-white/15 text-xs">
-            <div>
-              <span className="text-sky-200 block text-[10px] uppercase">Total Applications</span>
-              <span className="font-bold text-white font-mono text-sm">{applications.length}</span>
-            </div>
-            <div className="h-6 w-px bg-white/20" />
-            <div>
-              <span className="text-sky-200 block text-[10px] uppercase">Enrolled Students</span>
-              <span className="font-bold text-white font-mono text-sm">{students.length}</span>
-            </div>
-          </div>
-
-          <button
-            onClick={facultyLogout}
-            className="px-3.5 py-1.5 rounded-lg bg-rose-900/60 hover:bg-rose-800 text-xs text-rose-200 flex items-center gap-1.5 transition-colors border border-rose-500/30"
-          >
-            <LogOut className="w-3.5 h-3.5" />
-            <span>Sign Out Faculty</span>
-          </button>
-        </div>
+    <div className="relative min-h-screen pb-12">
+      {/* Visible Campus Picture in the background behind the entire dashboard */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <img
+          src={campusBannerImg}
+          alt="Kitwe School of Nursing and Midwifery Campus"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center filter brightness-[1.0] contrast-[1.02] opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-50/60 via-white/50 to-sky-50/60" />
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+        
+        {/* Admin Top Banner with Visible Campus Photo */}
+        <div className="relative overflow-hidden text-white rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 border border-sky-400/50">
+          <img
+            src={campusBannerImg}
+            alt="Kitwe School Campus Administration Block"
+            referrerPolicy="no-referrer"
+            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.95] contrast-[1.02]"
+          />
+          {/* Subtle gradient so the photo is clearly visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-950/40 to-transparent" />
+
+          <div className="relative z-10 flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-sky-600/90 text-white font-bold flex items-center justify-center shrink-0 shadow-lg border border-sky-300/40">
+              <ShieldCheck className="w-8 h-8" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-sky-200 font-semibold uppercase tracking-wider drop-shadow-sm">Admin Console</span>
+                <span className="text-xs text-sky-300">·</span>
+                <span className="text-xs text-sky-200">Kitwe School Faculty Hub</span>
+              </div>
+              <h1 className="font-serif-crest text-xl sm:text-2xl font-bold mt-1 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                {adminUser.name}
+              </h1>
+              <p className="text-xs text-sky-100 drop-shadow-sm">
+                {adminUser.designation} · {adminUser.email}
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Stats & Sign Out */}
+          <div className="relative z-10 flex flex-wrap md:flex-col items-end gap-3 shrink-0">
+            <div className="flex items-center gap-3 bg-slate-950/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 text-xs shadow-md">
+              <div>
+                <span className="text-sky-200 block text-[10px] uppercase font-semibold">Total Applications</span>
+                <span className="font-bold text-white font-mono text-sm">{applications.length}</span>
+              </div>
+              <div className="h-6 w-px bg-white/20" />
+              <div>
+                <span className="text-sky-200 block text-[10px] uppercase font-semibold">Enrolled Students</span>
+                <span className="font-bold text-white font-mono text-sm">{students.length}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={facultyLogout}
+              className="px-3.5 py-1.5 rounded-lg bg-rose-600/80 hover:bg-rose-500 text-xs text-white flex items-center gap-1.5 transition-colors border border-rose-300/40 shadow-sm backdrop-blur-xs"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Sign Out Faculty</span>
+            </button>
+          </div>
+        </div>
 
       {/* Admin Navigation Tabs */}
       <div className="flex flex-wrap items-center gap-2 border-b border-sky-100 pb-2">
@@ -872,6 +902,7 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
+      </div>
     </div>
   );
 };
